@@ -26,10 +26,14 @@ application.properties
 
 thanks to the line - "spring.jpa.hibernate.ddl-auto=update" all tables will be created automaticaly.
 
+#### After that just open folder, for example as Intellij idea project. 
+#### When intellij idea will opened use "add configuration"->"add new configuration"->"application", 
+#### in the line "Main class" select "NotebookAplication" then click "ok" and you're done. 
+
 - User data is added to DB upon registration, they notes is added in "notebookentry" table upon creating with user_id like foreign key on table "users" column "id".
 
 ### If u want to get DEVELOPERS rights, u need to create user with "DEVELOPER" in "role" column in "users" table. 
-All new registered users are created with the default role "USER", the ability of the developer to change roles to other users has not yet been implemented. This will give you the necessary rights to view the list with all users, edit their profiles or delete them.
+All new users are created with the default role "USER", the ability of the developer to change roles to other users has not yet been implemented. This will give you the necessary rights to view the list with all users, edit their profiles or delete them.
 
 - Starting page adress is "http://localhost:8080/auth/login" in my case, because I was running the application on my computer.
   
