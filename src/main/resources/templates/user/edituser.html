@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body class="bg-light">
+<div class="container mt-5 md-5">
+    <h1 type="text" >Edit profile</h1>
+    <div>
+        <form th:method="post"  th:object="${user}">
+            <label for="fname">First name</label>
+            <h4 th:if="${warning}" th:text="${warning}" class="text-danger"></h4>
+            <input type="text" th:value="${user.getFirstname()}" name="firstname" id="fname"  class="form-control">
+            <div th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="text-danger">Firstname Error</div>
+            <br>
+            <label for="lname">Last Name</label>
+            <input type="text" th:value="${user.getLastname()}" name="lastname" id="lname"  class="form-control">
+            <div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="text-danger">Lastname Error</div>
+            <br>
+            <label for="pass">Password</label>
+            <input type="password" th:value="${user.getPassword()}" name="password" id="pass" class="form-control">
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Password Error</div>
+            <br>
+            <label for="email">Email address</label>
+            <input type="text" th:value="${user.getEmail()}" name="email" id="email" class="form-control">
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">Email Error</div>
+            <br>
+            <button type="submit" class="btn btn-success">Update profile</button>
+            <a href="/users" class="btn btn-success">Back to List of users</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

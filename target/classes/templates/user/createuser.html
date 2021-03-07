@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body class="bg-light">
+<div class="container mt-5 mb-5">
+    <h1>Registration</h1>
+    <h4 th:if="${warning}" th:text="${warning}" class="text-danger"></h4>
+    <form th:action="@{/auth/registration}" th:method="post" th:object="${user}">
+        <input type="text" name="firstname" th:field="*{firstname}" placeholder="Enter your First Name" class="form-control">
+        <div th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="text-danger">Firstname Error</div>
+        <br>
+        <input type="text" name="lastname" th:field="*{lastname}" placeholder="Enter your Last Name" class="form-control">
+        <div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="text-danger">Lastname Error</div>
+        <br>
+        <input type="text" name="password" th:field="*{password}" placeholder="Enter your password" class="form-control">
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Password Error</div>
+        <br>
+        <input type="text" name="email" th:field="*{email}" placeholder="Enter your email" class="form-control">
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">Email Error</div>
+        <br>
+        <button type="submit" class="btn btn-success">confirm registration</button>
+    </form>
+</div>
+</body>
+</html>

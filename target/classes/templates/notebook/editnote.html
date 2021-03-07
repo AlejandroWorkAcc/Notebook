@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Notebook</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between fixed-top">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a  href="/notebook/notes" class="navbar-brand">NOTEBOOK</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-success" href="/notebook/add">ADD NEW NOTE</a>
+            </li>
+        </ul>
+        <div class="row justify-content-end">
+            <a class="nav-link" href="/users">All users(for developers)</a>
+            <form action="/auth/logout" method="post" >
+                <button type="submit" class="btn btn-md btn-danger">Logout</button>
+            </form>>
+        </div>
+    </nav>
+    <br>
+    <div class="container mt-5 md-5">
+    <h1>Edit note</h1>
+    <div>
+        <form th:method="post" th:object="${entry}">
+            <input type="text" th:value="${entry.getTitle()}" name="title" class="form-control">
+            <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger">Title Error</div>
+            <br>
+            <textarea name="content" th:text="${entry.getContent()}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-danger">Content Error</div>
+            <br>
+            <button type="submit" class="btn btn-success">Update note</button>
+        </form>
+        <br>
+        <a href="/notebook/notes" class="btn btn-success" >Back to my notes</a>
+    </div>
+    </div>
+</body>
+</html>

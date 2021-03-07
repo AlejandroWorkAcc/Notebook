@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between fixed-top">
+        <div class="nav-item">
+            <a href="/notebook/notes" class="navbar-brand">NOTEBOOK</a>
+        </div>
+        <div class="row justify-content-end">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                About us
+            </button>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+        <div class="container-fluid">
+            <h2>Login</h2>
+            <h4 th:if="${warning}" th:text="${warning}"></h4>
+            <form action="/auth/login" method="post">
+                <p>
+                    <label for="username">Username<input type="text" name="username" id="username" class="form-control"></label>
+                    <small>(Your First name upon registration)</small>
+                </p>
+                <p>
+                    <label for="password">Password<input type="text" name="password" id="password" class="form-control"></label>
+
+                </p>
+                    <button type="submit" class="btn btn-success">login</button>
+            </form>
+            <br>
+            <a href="/auth/registration" class="btn btn-success">Registration</a>
+        </div>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">About us</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Nothing to know... just I am
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

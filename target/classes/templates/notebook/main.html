@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>NOTEBOOK</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between fixed-top">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/notebook/notes" title="All your notes" class="navbar-brand">NOTEBOOK</a>
+                    <h6><small class="text-white">click above to see</small></h6>
+                </li>
+                <li class="nav-item mr-5">
+                    <a class="nav-link text-success" href="/notebook/add">ADD NEW NOTE</a>
+                </li>
+                <li class="nav-item">
+                    <form th:action="@{/notebook/notes}" th:method="get">
+                        <input type="text" name="searched" th:value="${searched}" placeholder="for search" class="form-control"/>
+                        <button type="submit" class="btn btn-sm btn-success mt-1 d-inline">Find</button>
+                    </form>
+                </li>
+            </ul>
+            <div class="row justify-content-end">
+                <a class="nav-link" href="/users">All users(for developers)</a>
+                <button type="button" class="btn btn-md btn-primary mr-2" data-toggle="modal" data-target="#myModal">
+                    About us
+                </button>
+                <form action="/auth/logout" method="post" >
+                    <button type="submit" class="btn btn-md btn-danger pb-2">Logout</button>
+                </form>>
+            </div>
+    </nav>
+    <br>
+    <br>
+
+    <div class="container-fluid bg-light">
+        <div class="container-fluid mt-5">
+            <div th:each="element : ${list}" class="alert alert-info mt-8">
+                <hr>
+                    <u><h1 th:text="${element.getTitle()}" class="text-dark"></h1></u>
+                    <h5 th:text="${element.getDateOfCreation()}" class="text-dark d-inline"></h5>
+                    <small>date of creation or last update</small>
+                    <br>
+                    <br>
+                    <div th:switch="${element.getTitle().isEmpty()}">
+                        <h3 th:case="${true}" th:text="${element.getContent()}" th:id="'id' + ${element.getId()}" class="collapse show border border-dark rounded bg-light font-italic text-dark pt-2 pb-2 pl-2 pr-2" ></h3>
+                        <h3 th:case="*" th:text="${element.getContent()}" th:id="'id' + ${element.getId()}" class="collapse border border-dark rounded bg-light font-italic text-dark pt-2 pb-2 pl-2 pr-2" ></h3>
+                    </div>
+                    <button type="button" class="btn btn-info" data-toggle="collapse" th:data-target="'#' + 'id' + ${element.getId()}">details</button>
+                    <a th:href="'/notebook/' + ${element.getId()} + '/edit'" class="btn btn-success mr-4">edit</a>
+                    <form th:action="'/notebook/' + ${element.getId()} + '/remove'" th:method="post" class="d-inline">
+                        <button class="btn btn-sm btn-danger" type="submit">remove</button>
+                    </form>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">About us</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Nothing to know... just I am
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
