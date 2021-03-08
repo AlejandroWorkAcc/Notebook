@@ -32,7 +32,7 @@ thanks to the line - "spring.jpa.hibernate.ddl-auto=update" all tables will be c
 
 - User data is added to DB upon registration, they notes is added in "notebookentry" table upon creating with user_id like foreign key on table "users" column "id".
 
-### If u want to get DEVELOPERS rights, u need to create user with "DEVELOPER" in "role" column in "users" table. 
+### If u want to get DEVELOPERS rights, u need to create a user and change the value of this user in "role" column in "users" table to "DEVELOPER". 
 All new users are created with the default role "USER", the ability of the developer to change roles to other users has not yet been implemented. This will give you the necessary rights to view the list with all users, edit their profiles or delete them.
 
 - Starting page adress is "http://localhost:8080/auth/login" in my case, because I was running the application on my computer.
